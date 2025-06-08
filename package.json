@@ -1,0 +1,23 @@
+{
+  "name": "sparta-tigers-liveboard-crawler",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "scripts": {
+    "prod": "NODE_ENV=production node index.mjs",
+    "dev": "node index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@sparticuz/chromium": "^123.0.0",
+    "dotenv": "^16.5.0",
+    "ioredis": "^5.6.1",
+    "knex": "^3.1.0",
+    "mysql2": "^3.14.1",
+    "puppeteer-core": "^22.6.0"
+  }
+}
