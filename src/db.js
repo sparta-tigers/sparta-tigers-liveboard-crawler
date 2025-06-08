@@ -30,7 +30,7 @@ export async function getTodayMatches() {
     try {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        today.setDate(today.getDate() - 1); // TODO 테스트용 지울 예정
+        today.setDate(today.getDate());
 
         const tomorrow = new Date(today);
         tomorrow.setDate(today.getDate() + 1);
