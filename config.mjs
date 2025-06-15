@@ -7,8 +7,10 @@ export function loadEnv() {
     const __dirname = path.dirname(__filename);
 
     const envPath = process.env.NODE_ENV === 'production'
-        ? path.resolve(__dirname, '..', '.env.production')
-        : path.resolve(__dirname, '..', '.env.local')
+        ? path.resolve(__dirname, '.env.production')
+        : path.resolve(__dirname, '.env.local')
+
+    console.log(`envPath: ${envPath}, ENV: ${process.env.NODE_ENV}`);
 
     dotenv.config({path: envPath})
 }

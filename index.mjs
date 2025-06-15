@@ -1,7 +1,7 @@
-import {loadEnv} from "./src/config.mjs";
-import {getTodayMatches, initializeKnex} from "./src/db.js";
-import {startLiveBoard} from "./src/liveboard_crawler.js";
-import {initRedis} from "./src/redis.js";
+import {loadEnv} from "./config.mjs";
+import {getTodayMatches, initializeKnex} from "./db.js";
+import {startLiveBoard} from "./liveboard_crawler.js";
+import {initRedis} from "./redis.js";
 
 async function start() {
     loadEnv();

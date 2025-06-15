@@ -1,5 +1,4 @@
 import puppeteer from "puppeteer-core";
-import chromium from '@sparticuz/chromium'
 import {getRedisPublisher} from "./redis.js";
 
 /**
@@ -42,23 +41,6 @@ function generateLiveBoardUrls(matches) {
     });
 
     return generatedUrls;
-}
-
-async function initializeBrowserAndPage(matchWithUrl) {
-    console.log('브라우저 및 페이지 기동');
-    const browser = await puppeteer.launch({
-        args: process.env.NODE_ENV === 'local' ? undefined : chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: process.env.NODE_ENV === 'local' ? '/opt/homebrew/bin/chromium' : await chromium.executablePath(),
-        headless: true,
-    });
-
-    const page = await browser.newPage();
-    await page.goto(matchWithUrl.liveBoardUrl, { waitUntil: 'domcontentloaded' });
-
-    console.log('페이지 로드 완료:', await page.title());
-
-    return { browser, page };
 }
 
 async function crawlLiveBoardData(page, matchWithUrl) {
@@ -128,12 +110,10 @@ export async function startLiveBoard(matches) {
     try {
         console.log('브라우저 기동');
         browser = await puppeteer.launch({
-            args: process.env.NODE_ENV === 'local' ? undefined : chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: process.env.NODE_ENV === 'local' ? '/opt/homebrew/bin/chromium' : await chromium.executablePath(),
+            args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+            executablePath: process.env.CHROMIUM_PATH,
             headless: true,
         });
-        console.log('브라우저 시작 완료');
 
         // 경기별 페이지를 열고 크롤링 시작
         for (const match of matchesWithUrl) {

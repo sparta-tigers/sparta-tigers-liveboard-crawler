@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  crawler:
+    build: .
+    platform: linux/arm64
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
